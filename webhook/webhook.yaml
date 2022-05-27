@@ -16,3 +16,15 @@ spec:
             key: demoapp-feature-on
       subscriptionID: a4f797c3-67ca-4479-a739-75277453e56a
       sendFinished: true
+    - type: sh.keptn.event.flagoff.triggered
+      requests:
+        - "curl --header 'Content-Type: application/json' --request POST
+          https://app.launchdarkly.com/webhook/triggers/{{.env.secret_ld_demoap\
+          pfeatureoff}}"
+      envFrom:
+        - name: secret_ld_demoappfeatureoff
+          secretRef:
+            name: ld
+            key: demoapp-feature-off
+      subscriptionID: 5f75b926-d371-45bf-a31d-e85315fc56fd
+      sendFinished: true
