@@ -1,0 +1,18 @@
+apiVersion: webhookconfig.keptn.sh/v1alpha1
+kind: WebhookConfig
+metadata:
+  name: webhook-configuration
+spec:
+  webhooks:
+    - type: sh.keptn.event.flagon.triggered
+      requests:
+        - "curl --header 'Content-Type: application/json' --request POST
+          https://app.launchdarkly.com/webhook/triggers/{{.env.secret_ld_demoap\
+          pfeatureon}}"
+      envFrom:
+        - name: secret_ld_demoappfeatureon
+          secretRef:
+            name: ld
+            key: demoapp-feature-on
+      subscriptionID: a4f797c3-67ca-4479-a739-75277453e56a
+      sendFinished: true
